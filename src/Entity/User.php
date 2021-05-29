@@ -212,7 +212,7 @@ class User implements UserInterface
         return $this->addresses;
     }
 
-    /*public function addAddress(Address $address): self
+    public function addAddress(Address $address): self
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
@@ -220,9 +220,9 @@ class User implements UserInterface
         }
 
         return $this;
-    }*/
+    }
 
-    /*public function removeAddress(Address $address): self
+    public function removeAddress(Address $address): self
     {
         if ($this->addresses->removeElement($address)) {
             // set the owning side to null (unless already changed)
@@ -232,7 +232,7 @@ class User implements UserInterface
         }
 
         return $this;
-    }*/
+    }
 
     /*
     public function __toString()
@@ -249,7 +249,7 @@ class User implements UserInterface
         return $this->reviewsProducts;
     }
 
-    /*public function addReviewsProduct(ReviewsProduct $reviewsProduct): self
+    public function addReviewsProduct(ReviewsProduct $reviewsProduct): self
     {
         if (!$this->reviewsProducts->contains($reviewsProduct)) {
             $this->reviewsProducts[] = $reviewsProduct;
@@ -269,7 +269,7 @@ class User implements UserInterface
         }
 
         return $this;
-    }*/
+    }
 
     /**
      * @return Collection|Order[]
@@ -279,7 +279,7 @@ class User implements UserInterface
         return $this->orders;
     }
 
-    /*public function addOrder(Order $order): self
+    public function addOrder(Order $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
@@ -299,5 +299,5 @@ class User implements UserInterface
         }
 
         return $this;
-    }*/
+    }
 }

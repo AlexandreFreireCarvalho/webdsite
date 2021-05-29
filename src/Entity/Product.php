@@ -25,7 +25,7 @@ class Product
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -35,39 +35,34 @@ class Product
     private $moreInformations;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $price;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $isBestSeller = false;
+    private $isBestSeller = true;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $isNewArrival;
+    private $isNewArrival = true;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $isFeatured;
+    private $isFeatured = true;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $isSpecialOffer;
+    private $isSpecialOffer = true;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Genres::class, inversedBy="products")
-     */
-    private $genre;
 
     /**
      * @ORM\OneToMany(targetEntity=ReviewsProduct::class, mappedBy="product")
@@ -75,12 +70,12 @@ class Product
     private $reviewsProducts;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
 
@@ -90,7 +85,7 @@ class Product
     private $tags;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
 
@@ -140,9 +135,15 @@ class Product
      */
     private $editorRef;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Genres::class, inversedBy="products")
+     */
+    private $genre;
+
+    
+
     public function __construct()
     {
-        $this->genre = new ArrayCollection();
         $this->tagsProducts = new ArrayCollection();
         $this->reviewsProducts = new ArrayCollection();
         $this->createdAt = new \DateTime();
@@ -257,30 +258,6 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Genres[]
-     */
-    public function getGenre(): Collection
-    {
-        return $this->genre;
-    }
-
-    public function addGenre(Genres $genre): self
-    {
-        if (!$this->genre->contains($genre)) {
-            $this->genre[] = $genre;
-        }
-
-        return $this;
-    }
-
-    public function removeGenre(Genres $genre): self
-    {
-        $this->genre->removeElement($genre);
 
         return $this;
     }
@@ -475,5 +452,18 @@ class Product
 
         return $this;
     }
+
+    public function getGenre(): ?Genres
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genres $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
 
 }

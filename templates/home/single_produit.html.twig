@@ -26,8 +26,8 @@
                     <div class="product_description">
                         <h4 class="product_title"><a href="#">{{ product.name }}</a></h4>
                         <div class="product_price">
-                            <span class="price">${{product.price/100}}</span>
-                            <del>${{ product.price*1.35/100 }}</del>
+                            <span class="price">${{product.publicPrice}}</span>
+                            <del>${{ product.publicPrice*1.35 }}</del>
                             <div class="on_sale">
                                 <span>35% de réduction</span>
                             </div>
@@ -43,9 +43,9 @@
                         </div>
                         <div class="product_sort_info">
                             <ul>
-                                <li><i class="linearicons-shield-check"></i> 1 Year AL Jazeera Brand Warranty</li>
-                                <li><i class="linearicons-sync"></i> 30 Day Return Policy</li>
-                                <li><i class="linearicons-bag-dollar"></i> Cash on Delivery available</li>
+                                <li><i class="linearicons-shield-check"></i> Produit garanti 1 an</li>
+                                <li><i class="linearicons-sync"></i> Retour sous 30 jours</li>
+                                <li><i class="linearicons-bag-dollar"></i> Payement à la livraison possible</li>
                             </ul>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                     </div>
                     <hr />
                     <ul class="product-meta">
-                        <li>Catégorie: 
+                        <li>Genres: 
                             <a href="#">
-                                {% for category in product.category %}
-                                    {{ category.name }},
+                                {% for genre in product.genre %}
+                                    {{ genre.name }},
                                 {% endfor %}
                             </a>
                         </li>
@@ -197,8 +197,8 @@
                 	<h3>Produits Reliés</h3>
                 </div>
             	<div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                	{% for category in product.category %}
-                        {% for productRelated in category.products %}
+                	{% for genre in product.genre %}
+                        {% for productRelated in genre.products %}
                             {% if product is not same as(productRelated) %}
                                 {{ include('partials/product_item.html.twig', { 'product': productRelated }) }}
                             {% endif %}

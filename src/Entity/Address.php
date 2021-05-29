@@ -226,4 +226,24 @@ class Address
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $result = $this->fullName."<br>";
+        if ($this->getCompany()) {
+            $result .= $this->company."<br>";
+        }
+        $result .= $this->address."<br>";
+        $result .= $this->complement."<br>";
+        $result .= $this->codePostal." - ".$this->city."<br>";
+        $result .= $this->country."<br>";
+        if ($this->getDeliveryAddress()) {
+            $result .= $this->deliveryAddress."<br>";
+            $result .= $this->deliveryFirstname."<br>";
+            $result .= $this->deliveryLastname."<br>";
+        }
+    
+        return $result; 
+    }
+    
 }
