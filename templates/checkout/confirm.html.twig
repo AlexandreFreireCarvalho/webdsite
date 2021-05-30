@@ -8,28 +8,32 @@
 
 <div class="section">
 	<div class="container">
-        {{ form_start(checkout, { action: path('checkout_confirm') }) }}
+        
         <div class="row">
         	<div class="col-md-6">
                 <div class="heading_s1">
-                        <h4>Votre adresse de livraison</h4>
+                        <h4>Veuillez vérifier votre adresse de livraison</h4>
                         <div class="content" id="carrier">
-                            {{ form_widget(checkout.address) | replace({'[spr]' : '<br>'}) | raw }}
+                            {{ address | replace({'[spr]' : '<br>'}) | raw }}
                         </div>
-                        <a href="{{ path('address_new') }}" class="btn btn-fill-out btn-block mt-1">Ajouter une nouvelle Adresse</a>
+                        <a href="{{ path('address_edit', { 'id': address.id }) }}" class="btn btn-fill-out mt-1">Modifier Adresse</a>
+                        <a href="{{ path('checkout_edit') }}" class="btn btn-fill-out mt-1">Changer d'Adresse</a>
                 </div>
                 <div class="heading_s1">
-                    <h4>Votre transporteur</h4>
+                    <h4>Veuillez vérifier votre transporteur</h4>
                     <div class="content" id="carrier">
-                        {{ form_widget(checkout.carrier) | replace({'[spr]' : '<br>'}) | raw }}
+                        {{ carrier | replace({'[spr]' : '<br>'}) | raw }}
+                        <a href="{{ path('checkout') }}" class="btn btn-fill-out mt-1">Changer de Transporteur</a>
                     </div>
                 </div>
-                <div class="heading_s1">
-                    <h4>Informations Additionnelles</h4>
-                    <div class="form-group mb-0">
-                        {{ form_widget(checkout.informations) | replace({'[spr]' : '<br>'}) | raw }}
+                {% if informations %}
+                    <div class="heading_s1">
+                        <h4>Veuillez vérifier vos informations additionnelles</h4>
+                        <div class="form-group mb-0" id="informations">
+                            {{ informations | replace({'[spr]' : '<br>'}) | raw }}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
 
             <div class="col-md-6">
@@ -48,23 +52,27 @@
                                 <tbody>
                                     {% for element in cart.products %}
                                         <tr>
-                                            <td> {{ element.product.name }} <span class="product-qty">x {{ element.quantity }}</span></td>
-                                            <td>$ {{ element.product.publicPrice }}</td>
+                                            <td class="product-subtotal"> {{ element.product.name }} <span class="product-qty">x {{ element.quantity }}</span></td>
+                                            <td class="product-subtotal">€ {{ element.product.publicPrice }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>SubTotal HT</th>
-                                        <td class="product-subtotal">${{ cart.data.subTotalHT }}</td>
+                                        <td class="product-subtotal">€{{ cart.data.subTotalHT }}</td>
                                     </tr>
                                     <tr>
                                         <th>Taxe</th>
-                                        <td class="product-subtotal">${{ cart.data.taxe }}</td>
+                                        <td class="product-subtotal">€{{ cart.data.taxe }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Transporteur ( {{carrier.name}} )</th>
+                                        <td class="product-subtotal">€{{ carrier.price/100 }}</td>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
-                                        <td class="product-subtotal">${{ cart.data.subTotalTTC }}</td>
+                                        <td class="product-subtotal">€{{ cart.data.subTotalTTC + carrier.price/100 }}</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -75,11 +83,11 @@
                             </div>
 
                         </div>
-                        <button type="submit" id="checkout-button" class="btn btn-fill-out btn-block">Passer Commande</button>
+                        <button type="submit" id="checkout-button" class="btn btn-fill-out btn-block">Payé | €{{ cart.data.subTotalTTC + carrier.price }}</button>
                     </div>
             </div>
         </div>
-        {{ form_end(checkout) }}
+        
     </div>
 </div>
 

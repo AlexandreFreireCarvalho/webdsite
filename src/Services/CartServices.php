@@ -74,7 +74,7 @@ class CartServices
 
     public function updateCart($cart){
         $this->session->set('cart', $cart);
-        $this->session->set('cartData', $this->getFullCArt());
+        $this->session->set('cartData', $this->getFullCart());
     }
 
 /*==================getCart=================================*/
@@ -85,7 +85,7 @@ class CartServices
 
 /*==================getFullCArt=============================*/
 
-    public function getFullCArt(){
+    public function getFullCart(){
         $cart = $this->getCart();
 
         $fullCart = [];

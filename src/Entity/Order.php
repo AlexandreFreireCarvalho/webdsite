@@ -74,7 +74,7 @@ class Order
     /**
      * @ORM\Column(type="float")
      */
-    private $subTotalHt;
+    private $subTotalHT;
 
     /**
      * @ORM\Column(type="float")
@@ -84,7 +84,7 @@ class Order
     /**
      * @ORM\Column(type="float")
      */
-    private $subTotalTtc;
+    private $subTotalTTC;
 
     /**
      * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="orders")
@@ -222,14 +222,14 @@ class Order
         return $this;
     }
 
-    public function getSubTotalHt(): ?float
+    public function getSubTotalHT(): ?float
     {
-        return $this->subTotalHt;
+        return $this->subTotalHT;
     }
 
-    public function setSubTotalHt(?float $subTotalHt): self
+    public function setSubTotalHT(?float $subTotalHT): self
     {
-        $this->subTotalHt = $subTotalHt;
+        $this->subTotalHT = $subTotalHT;
 
         return $this;
     }
@@ -246,14 +246,14 @@ class Order
         return $this;
     }
 
-    public function getSubTotalTtc(): ?float
+    public function getSubTotalTTC(): ?float
     {
-        return $this->subTotalTtc;
+        return $this->subTotalTTC;
     }
 
-    public function setSubTotalTtc(?float $subTotalTtc): self
+    public function setSubTotalTTC(?float $subTotalTTC): self
     {
-        $this->subTotalTtc = $subTotalTtc;
+        $this->subTotalTTC = $subTotalTTC;
 
         return $this;
     }

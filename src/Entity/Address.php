@@ -229,18 +229,18 @@ class Address
 
     public function __toString()
     {
-        $result = $this->fullName."<br>";
+        $result = $this->fullName."[spr]";
         if ($this->getCompany()) {
-            $result .= $this->company."<br>";
+            $result .= $this->company."[spr]";
         }
-        $result .= $this->address."<br>";
-        $result .= $this->complement."<br>";
-        $result .= $this->codePostal." - ".$this->city."<br>";
-        $result .= $this->country."<br>";
+        $result .= $this->address."[spr]";
+        $result .= $this->complement."[spr]";
+        $result .= $this->codePostal." - ".$this->city."[spr]";
+        $result .= $this->country."[spr]";
         if ($this->getDeliveryAddress()) {
-            $result .= $this->deliveryAddress."<br>";
-            $result .= $this->deliveryFirstname."<br>";
-            $result .= $this->deliveryLastname."<br>";
+            $result .= $this->deliveryAddress."[spr]";
+            $result .= $this->deliveryFirstname."[spr]";
+            $result .= $this->deliveryLastname."[spr]";
         }
     
         return $result; 

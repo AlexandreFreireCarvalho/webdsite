@@ -33,7 +33,7 @@ class CartController extends AbstractController
      */
     public function addToCart($id): Response{
         $this->cartServices->addToCart($id);
-        return $this->redirectToRoute("cart");
+        return $this->redirectToRoute("home");
     }
 
     /**
