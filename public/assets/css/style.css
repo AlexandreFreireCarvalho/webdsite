@@ -2329,28 +2329,28 @@ input.text {
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
-.categories_wrap {
+.genres_wrap {
 	position: relative;
 }
-.categories_btn i {
+.genres_btn i {
 	font-size: 24px;
 	vertical-align: middle;
 	margin-right: 10px;
 }
-.categories_menu i {
+.genres_menu i {
 	margin-right: 0;
 	float: right;
 }
-.categories_btn.categories_menu {
+.genres_btn.genres_menu {
 	padding: 12px 15px;
 	border-radius: 4px;
 }
-.categories_btn span {
+.genres_btn span {
 	vertical-align: middle;
 	text-transform: uppercase;
 	font-weight: 500;
 }
-.categories_btn {
+.genres_btn {
 	background-color: #51ec08;
 	border: 1px solid #51ec08;
 	padding: 20px 15px;
@@ -2424,7 +2424,7 @@ input.text {
 #navCatContent .mega-menu-col {
 	border: 0;
 }
-.more_categories {
+.more_genres {
 	padding: 12px 15px;
 	display: block;
 	font-size: 16px;
@@ -2435,7 +2435,7 @@ input.text {
 	cursor: pointer;
 	width: 100%;
 }
-.more_categories::before {
+.more_genres::before {
 	content: "\ec36";
 	position: absolute;
 	right: 15px;
@@ -2445,7 +2445,7 @@ input.text {
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-.more_categories.show::before {
+.more_genres.show::before {
 	content: "\ec37";
 }
 .product_search_form {
@@ -3020,20 +3020,20 @@ input.text {
 }
 
 
-/******************** CATEGORIES ************************/
-.categories_box {
+/******************** genres ************************/
+.genres_box {
 	text-align: center;
 }
-.categories_box a {
+.genres_box a {
 	display: block;
 	padding: 35px 20px;
 	background-color: #f7f7f7;
 }
-.categories_box i {
+.genres_box i {
 	font-size: 40px;
 	display: block;
 }
-.categories_box span {
+.genres_box span {
 	text-transform: capitalize;
 	margin-top: 5px;
 	display: block;
@@ -3046,11 +3046,11 @@ input.text {
 	z-index: 1;
 	margin-top: -70px;
 }
-.cat_style1 .categories_box a {
+.cat_style1 .genres_box a {
 	background-color: transparent;
 	padding: 0px;
 }
-.cat_style1 .categories_box span {
+.cat_style1 .genres_box span {
 	margin-top: 10px;
 }
 
@@ -6052,16 +6052,16 @@ select option {
 	font-weight: 600;
 	letter-spacing: 0.3px;
 }
-.widget_categories li,
+.widget_genres li,
 .widget_archive li {
 	padding-bottom: 10px;
 	list-style: none;
 }
-.widget_categories li a,
+.widget_genres li a,
 .widget_archive li a {
 	position: relative;
 }
-.widget_categories li a::before,
+.widget_genres li a::before,
 .widget_archive li a:before {
 	content: "\f3d1";
 	font-family: "Ionicons";
@@ -6069,11 +6069,11 @@ select option {
 	line-height: normal;
 	margin-right: 10px;
 }
-.widget_categories li:last-child,
+.widget_genres li:last-child,
 .widget_archive li:last-child {
 	padding-bottom: 0;
 }
-.widget_categories .categories_num,
+.widget_genres .genres_num,
 .widget_archive .archive_num {
 	float: right;
 	font-size: 14px;

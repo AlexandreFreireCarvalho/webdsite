@@ -90,6 +90,10 @@ class User implements UserInterface
         return $this->email;
     }
 
+    public function getFullName(){
+        return $this->firstname.' '.$this->lastname;
+    }
+
     public function setEmail(string $email): self
     {
         $this->email = $email;

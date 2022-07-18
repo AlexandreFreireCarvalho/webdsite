@@ -53,7 +53,7 @@
                                     {% for element in cart.products %}
                                         <tr>
                                             <td class="product-subtotal"> {{ element.product.name }} <span class="product-qty">x {{ element.quantity }}</span></td>
-                                            <td class="product-subtotal">€ {{ element.product.publicPrice }}</td>
+                                            <td class="product-subtotal">€ {{ element.product.price }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

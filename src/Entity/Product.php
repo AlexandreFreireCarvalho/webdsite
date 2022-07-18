@@ -100,11 +100,6 @@ class Product
     private $heroes;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $publicPrice;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -369,17 +364,6 @@ class Product
         return $this;
     }
 
-    public function getPublicPrice(): ?float
-    {
-        return $this->publicPrice;
-    }
-
-    public function setPublicPrice(?float $publicPrice): self
-    {
-        $this->publicPrice = $publicPrice;
-
-        return $this;
-    }
 
     public function getProvider(): ?Provider
     {

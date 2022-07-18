@@ -102,7 +102,7 @@ class CartServices
                     "product" => $product
                 ];
                 $quantity_cart += $quantity;
-                $subTotal += $quantity * $product->getPublicPrice();
+                $subTotal += $quantity * $product->getPrice();
             }else{
                 // id incorrecte
                 $this->deleteFromCart($id);

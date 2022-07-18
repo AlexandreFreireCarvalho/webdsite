@@ -39,7 +39,7 @@ class ProductCrudController extends AbstractCrudController
             TextEditorField::new('moreInformations')->hideOnIndex(),
             TextEditorField::new('summary'),
             MoneyField::new('price')->setCurrency('EUR'),
-            MoneyField::new('public_price')->setCurrency('EUR'),
+            MoneyField::new('price')->setCurrency('EUR'),
             MoneyField::new('editorPrice')->setCurrency('EUR'),
             IntegerField::new('quantity'),
             TextField::new('tags'),

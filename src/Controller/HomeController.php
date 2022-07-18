@@ -2,20 +2,30 @@
 
 namespace App\Controller;
 
+use App\Entity\EmailModel;
+use App\Entity\User;
 use App\Entity\Product;
+use App\Entity\SearchProduct;
+use App\Entity\RelatedProducts;
+use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\HomeSliderRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(ProductRepository $repoProduct): Response
+    public function index(ProductRepository $repoProduct, HomeSliderRepository $repoHomeSlider): Response
     {
         $products = $repoProduct->findAll();
+
+        $homeSlider = $repoHomeSlider->findBy(['isDisplayed'=>true]);
 
         $productBestSeller = $repoProduct->findByIsBestSeller(1);
 
@@ -25,20 +35,19 @@ class HomeController extends AbstractController
 
         $productFeatured = $repoProduct->findByIsFeatured(1);        
 
-        //dd([$productBestSeller, $productSpecialOffer, $productNewArrival, $productFeatured]);
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'products' => $products,
             'productBestSeller' => $productBestSeller,
             'productSpecialOffer' => $productSpecialOffer,
             'productNewArrival' => $productNewArrival,
-            'productFeatured' => $productFeatured
+            'productFeatured' => $productFeatured,
+            'homeSlider' => $homeSlider,
         ]);
     }
 
     /**
-     * @Route("/product/{slug}", name="product_details")
+     * @Route("/product/{name}", name="product_details")
      */
     public function show(?Product $product): Response{
         if (!$product) {
@@ -47,6 +56,28 @@ class HomeController extends AbstractController
 
         return $this->render("home/single_produit.html.twig",[
             'product' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/shop", name="shop")
+     */
+    public function shop(ProductRepository $repoProduct, Request $request): Response
+    {
+        $products = $repoProduct->findAll();
+
+        $search = new SearchProduct();
+        $form = $this->createForm(SearchProductType::class, $search);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+           $products = $repoProduct->findWithSearch($search);    
+        }
+
+        return $this->render('home/shop.html.twig', [
+            'products' => $products,
+            'search' => $form->createView()
         ]);
     }
 }

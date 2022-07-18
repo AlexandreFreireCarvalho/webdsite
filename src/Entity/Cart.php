@@ -47,7 +47,7 @@ class Cart
     private $carrierPrice;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $deliveryAddress;
 
@@ -162,14 +162,14 @@ class Cart
         return $this;
     }
 
-    public function getDeliveryAddress(): ?string
+    public function getDeliveryAddresss(): ?string
     {
-        return $this->deliveryAddress;
+        return $this->deliveryAddresss;
     }
 
-    public function setDeliveryAddress(string $deliveryAddress): self
+    public function setDeliveryAddresss(string $deliveryAddresss): self
     {
-        $this->deliveryAddress = $deliveryAddress;
+        $this->deliveryAddresss = $deliveryAddresss;
 
         return $this;
     }
